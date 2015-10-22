@@ -39,12 +39,35 @@ ShortCode\Random::get(8, ShortCode\Code::FORMAT_ALNUM_SMALL);
 ShortCode\Reversible::convert(46345223); 
 // Output: 38svB
 
-ShortCode\Reversible::revert('r43Nx2');
+ShortCode\Reversible::revert('38svB');
 // Output: 46345223
 
+// If you specify a format for converting, remember to use the same format for reverting
 ShortCode\Reversible::convert(46345223, ShortCode\Code::FORMAT_ALNUM_CAPITAL);
 // Output: RLC7B
 
 ShortCode\Reversible::revert('RLC7B', ShortCode\Code::FORMAT_ALNUM_CAPITAL);
 // Output: 46345223
 ```
+
+### Workaround for Reversible code with certain length
+Let's say, for creating reversible reference code, you are converting the IDs to small letter text.
+For id 68, it will become - 
+```php
+<?php
+ShortCode\Reversible::convert(68, ShortCode\Code::FORMAT_CHAR_SMALL);
+// Output : cw
+```
+
+Now, if the 2 char text don't look good as a code number and you want a little longer codes,  
+just add a fixed salt to increase the numbers. Also, remember to subtract the salt after reverting  
+
+```php
+<?php
+$salt = 99999;
+ShortCode\Reversible::convert(68 + $salt, ShortCode\Code::FORMAT_CHAR_SMALL);
+// Output : hfrl
+ShortCode\Reversible::revert('hfrl', ShortCode\Code::FORMAT_CHAR_SMALL) - $salt;
+// Output : 68
+```
+  
