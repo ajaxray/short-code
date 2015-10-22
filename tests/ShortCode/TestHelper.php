@@ -25,4 +25,4 @@ trait TestHelper
             [Code::FORMAT_NUMBER, 'FORMAT_NUMBERS'],
         ];
     }
-} 
+}
