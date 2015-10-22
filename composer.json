@@ -1,0 +1,27 @@
+{
+    "name"             : "ajaxray/ShortCode",
+    "description"      : "Create short (e.g. 4, 6, 8, 10, 20 characters), reversible/random, hash like string",
+    "minimum-stability": "dev",
+    "license"          : "MIT",
+    "keywords"         : ["hash", "code", "random", "shortcode", "psr-3"],
+    "homepage"         : "http://github.com/Seldaek/monolog",
+    "type"             : "library",
+    "authors"          : [
+        {
+            "name" : "Anis Uddin Ahmad",
+            "email": "anis.programmer@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "autoload": {
+        "psr-4": {"ShortCode\\": "src/ShortCode"}
+    },
+    "autoload-dev": {
+        "psr-4": {"ShortCode\\": "tests/ShortCode"}
+    }
+}
