@@ -11,7 +11,7 @@ Can be used for generating small reference codes, tiny URLs or any other purpose
 Install the latest version with
 
 ```
-$ composer require ajaxray/ShortCode
+$ composer require ajaxray/short-code
 ```
 
 ## Supported Output and Conversion Formats
@@ -28,7 +28,7 @@ $ composer require ajaxray/ShortCode
 ```php
 <?php
 ShortCode\Random::get(); 
-// Something like: aWg2m5Q3
+// Something like (8 chars by default) : aWg2m5Q3
 
 ShortCode\Random::get(6); 
 // 6 character length. e.g. r43Nx2
@@ -63,7 +63,7 @@ ShortCode\Reversible::convert(68, ShortCode\Code::FORMAT_CHAR_SMALL);
 // Output : cw
 ```
 
-Now, if the 2 char text don't look good as a code number and you want a little longer codes,  
+Now, if the 2 char text don't looks good as a code number and you want a little longer codes,  
 just add a fixed salt to increase the numbers. Also, remember to subtract the salt after reverting  
 
 ```php

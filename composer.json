@@ -1,10 +1,10 @@
 {
-    "name"             : "ajaxray/ShortCode",
-    "description"      : "Create short (e.g. 4, 6, 8, 10, 20 characters), reversible/random, hash like string",
+    "name"             : "ajaxray/short-code",
+    "description"      : "ShortCode generator for PHP. Create short, reversible or random, hash like codes.",
     "minimum-stability": "dev",
     "license"          : "MIT",
-    "keywords"         : ["hash", "code", "random", "shortcode", "convert", "revert", "psr-3"],
-    "homepage"         : "http://github.com/ajaxray/ShortCode",
+    "keywords"         : ["hash", "code", "random", "short-code", "convert", "revert", "psr-3"],
+    "homepage"         : "http://github.com/ajaxray/short-code",
     "type"             : "library",
     "authors"          : [
         {
