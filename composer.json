@@ -1,10 +1,10 @@
 {
-    "name"             : "ajaxray/ShortCode",
+    "name"             : "ajaxray/short-code",
     "description"      : "Create short (e.g. 4, 6, 8, 10, 20 characters), reversible/random, hash like string",
     "minimum-stability": "dev",
     "license"          : "MIT",
     "keywords"         : ["hash", "code", "random", "shortcode", "convert", "revert", "psr-3"],
-    "homepage"         : "http://github.com/ajaxray/ShortCode",
+    "homepage"         : "http://github.com/ajaxray/short-code",
     "type"             : "library",
     "authors"          : [
         {
