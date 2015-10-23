@@ -1,6 +1,10 @@
 # ShortCode
 
-Create short (2 - 20 characters), reversible / random, hash like string
+ShortCode generator for PHP. Create short, hash like codes. Codes can be random or reversible. Output format is customizable (see the list below).      
+You can generate random string code of your desired character length, e.g. 4, 6, 8 ... up to 20.   
+Also, you can generate reversible codes from numbers. It's useful when you'll need to trace the original number from a reference code string.    
+
+Can be used for generating small reference codes, tiny URLs or any other purpose.  
 
 ## Installation
 

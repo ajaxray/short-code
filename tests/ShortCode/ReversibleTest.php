@@ -2,7 +2,7 @@
 /*
  * This file is part of the ShortCode project.
  *
- * (c) Anis Uddin Ahmad <anisniit@gmail.com>
+ * (c) Anis Uddin Ahmad <anis.programmer@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,9 +13,7 @@ namespace ShortCode;
 /**
  * ReversibleTest
  *
- * Small description about ReversibleTest.
- *
- * @author Anis Uddin Ahmad <anisniit@gmail.com>
+ * @author Anis Uddin Ahmad <anis.programmer@gmail.com>
  */
 class ReversibleTest extends \PHPUnit_Framework_TestCase
 {
@@ -53,7 +51,7 @@ class ReversibleTest extends \PHPUnit_Framework_TestCase
             'm' => 389,
             'l' => 4387652,
             'xl' => 912791662310,
-            'xxl' => $formatName
+            'xxl' => PHP_INT_MAX, // on amd64 linux, its 9223372036854775807 (2^63-1)
         ];
 
         foreach($sizes as $val) {
@@ -64,5 +62,13 @@ class ReversibleTest extends \PHPUnit_Framework_TestCase
             $message = "Trying with {$inputs[$val]} using {$formatName}";
             $this->assertEquals($inputs[$val], Reversible::revert($codes[$val], $format), $message);
         }
+    }
+
+    /**
+     * @expectedException ShortCode\Exception\UnexpectedCodeLength
+     */
+    public function testExceptionIfConvertingNegativeNumber()
+    {
+        Reversible::convert(-9);
     }
 } 

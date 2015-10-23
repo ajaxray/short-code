@@ -2,7 +2,7 @@
 /*
  * This file is part of the ShortCode project.
  *
- * (c) Anis Uddin Ahmad <anisniit@gmail.com>
+ * (c) Anis Uddin Ahmad <anis.programmer@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,9 +13,9 @@ namespace ShortCode;
 /**
  * Code
  *
- * Small description about Code.
+ * Abstract parent for all type of code generation classes.
  *
- * @author Anis Uddin Ahmad <anisniit@gmail.com>
+ * @author Anis Uddin Ahmad <anis.programmer@gmail.com>
  */
 abstract class Code
 {
