@@ -34,7 +34,7 @@ class Random extends Code
     {
         static::throwUnlessAcceptable($outputFormat, $length);
 
-        $number = str_replace('.', '', microtime(true)) . rand(100, 900);
+        $number = rand(100, 900) . str_replace('.', '', microtime(true));
         $output = self::convertBase($number, self::FORMAT_NUMBER, $outputFormat);
 
         if(strlen($output) < $length) {
