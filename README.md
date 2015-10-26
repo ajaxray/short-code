@@ -1,7 +1,8 @@
 # ShortCode
 
-[![Build Status](https://travis-ci.org/ajaxray/short-code.svg?branch=master)](https://travis-ci.org/ajaxray/short-code)
 [![PHP version](https://badge.fury.io/ph/ajaxray%2Fshort-code.svg)](https://badge.fury.io/ph/ajaxray%2Fshort-code)
+[![Build Status](https://travis-ci.org/ajaxray/short-code.svg?branch=master)](https://travis-ci.org/ajaxray/short-code)
+[![Coverage Status](https://coveralls.io/repos/ajaxray/short-code/badge.svg?branch=feature-badges&service=github)](https://coveralls.io/github/ajaxray/short-code?branch=feature-badges)
 
 ShortCode generator for PHP. Create short, hash like codes. Codes can be random or reversible. Output format is customizable (see the list below).      
 You can generate random string code of your desired character length, e.g. 4, 6, 8 ... up to 20.   
