@@ -20,5 +20,8 @@
     },
     "autoload-dev": {
         "psr-4": {"ShortCode\\": "tests/ShortCode"}
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master"
     }
 }

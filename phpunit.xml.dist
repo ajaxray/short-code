@@ -16,6 +16,10 @@
         </whitelist>
     </filter>
 
+    <logging>
+        <log type="coverage-php" target="build/cov/coverage.cov"/>
+    </logging>
+
     <php>
         <ini name="date.timezone" value="UTC"/>
     </php>

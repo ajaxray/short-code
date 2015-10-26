@@ -2,5 +2,12 @@ language: php
 php:
   - 5.5
   - 5.6
-install: composer dump-autoload
-script: phpunit
+
+before_script: composer install --dev --no-interaction
+
+script:
+  - mkdir -p build/logs
+  - phpunit -c phpunit.xml.dist
+
+after_script:
+  - php vendor/bin/coveralls
