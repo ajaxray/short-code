@@ -50,14 +50,15 @@ abstract class Code
         $numberLen = strlen($numberInput);
         $retval    = '';
 
-        if ($toBaseInput == '0123456789') {
+        if ($toBaseInput == self::FORMAT_NUMBER) {
             $retval = 0;
-            for ($i = 1; $i <= $numberLen; $i++)
+            for ($i = 1; $i <= $numberLen; $i++) {
                 $retval = bcadd($retval, bcmul(array_search($number[$i - 1], $fromBase), bcpow($fromLen, $numberLen - $i)));
+            }
             return $retval;
         }
-        if ($fromBaseInput != '0123456789') {
-            $base10 = convBase($numberInput, $fromBaseInput, '0123456789');
+        if ($fromBaseInput != self::FORMAT_NUMBER) {
+            $base10 = self::convertBase($numberInput, $fromBaseInput, self::FORMAT_NUMBER);
         } else {
             $base10 = $numberInput;
         }

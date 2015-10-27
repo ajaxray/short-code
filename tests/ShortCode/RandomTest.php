@@ -19,9 +19,6 @@ class RandomTest extends \PHPUnit_Framework_TestCase
 {
     use TestHelper;
 
-    /**
-     * @Covers ShortCode\Random::get
-     */
     public function testRandomCodeGeneration()
     {
         $code = Random::get();
