@@ -1,11 +1,11 @@
 # ShortCode
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8254062e-538a-4667-aa56-920e293bef5a/small.png)](https://insight.sensiolabs.com/projects/8254062e-538a-4667-aa56-920e293bef5a)
 [![Build Status](https://travis-ci.org/ajaxray/short-code.svg?branch=master)](https://travis-ci.org/ajaxray/short-code)
 [![Coverage Status](https://coveralls.io/repos/ajaxray/short-code/badge.svg?branch=master&service=github)](https://coveralls.io/github/ajaxray/short-code?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/ajaxray/short-code/v/stable)](https://packagist.org/packages/ajaxray/short-code) 
 [![Total Downloads](https://poser.pugx.org/ajaxray/short-code/downloads)](https://packagist.org/packages/ajaxray/short-code)
 [![License](https://poser.pugx.org/ajaxray/short-code/license)](https://packagist.org/packages/ajaxray/short-code)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8254062e-538a-4667-aa56-920e293bef5a/small.png)](https://insight.sensiolabs.com/projects/8254062e-538a-4667-aa56-920e293bef5a)
 
 ShortCode generator for PHP. Create short, hash like codes. Codes can be random or reversible. Output format is customizable (see the list below).      
 You can generate random string code of your desired character length, e.g. 4, 6, 8 ... up to 20.   
