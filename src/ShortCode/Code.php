@@ -26,7 +26,6 @@ abstract class Code
     const FORMAT_CHAR_SMALL    = 'abcdefghijklmnopqrstwxyz';
     const FORMAT_CHAR_CAPITAL  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-
     /**
      * @see http://php.net/manual/en/function.base-convert.php#106546
      *
@@ -80,4 +79,4 @@ abstract class Code
 
         return $constants[$value];
     }
-} 
+}

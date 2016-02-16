@@ -20,4 +20,4 @@ namespace ShortCode\Exception;
 class UnexpectedCodeLength extends \RangeException
 {
     // Throw when code length is unusually long or short
-} 
+}

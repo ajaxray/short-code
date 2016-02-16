@@ -27,7 +27,7 @@ class ReversibleTest extends \PHPUnit_Framework_TestCase
      */
     public function testCodeGeneratedWithCorrectFormat($format, $formatName)
     {
-        $code = Random::get(6, $format);
+        $code = Reversible::convert(10, $format);
         $length = strlen($code);
         $this->assertSame(1, preg_match("/[$format]{". $length. '}/', $code), 'Trying with '. $formatName);
     }
@@ -45,14 +45,8 @@ class ReversibleTest extends \PHPUnit_Framework_TestCase
     {
         $sizes = ['xs', 's', 'm', 'l', 'xl', 'xxl'];
         $codes = [];
-        $inputs = [
-            'xs' => 6,
-            's' => 87,
-            'm' => 389,
-            'l' => 4387652,
-            'xl' => 912791662310,
-            'xxl' => PHP_INT_MAX, // on amd64 linux, its 9223372036854775807 (2^63-1)
-        ];
+        $inputs = array_combine($sizes, [6, 87, 389, 4387652, 912791662310, PHP_INT_MAX]);
+        // on amd64 linux, PHP_INT_MAX = 9223372036854775807 (2^63-1)
 
         foreach($sizes as $val) {
             $codes[$val] = Reversible::convert($inputs[$val], $format);
@@ -65,7 +59,33 @@ class ReversibleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException ShortCode\Exception\UnexpectedCodeLength
+     * @dataProvider formatProvider
+     *
+     * @covers ShortCode\Reversible::convert
+     * @covers ShortCode\Reversible::revert
+     *
+     * @param $format
+     * @param $formatName
+     */
+    public function testGeneratedCodeWithMinLength($format, $formatName)
+    {
+        $sizes  = ['xs', 's', 'm', 'l', 'xl', 'xxl'];
+        $codes  = [];
+        $inputs = array_combine($sizes, [6, 87, 389, 4387652, 912791662310, PHP_INT_MAX]);
+        // on amd64 linux, PHP_INT_MAX = 9223372036854775807 (2^63-1)
+
+        foreach ($sizes as $val) {
+            $codes[$val] = Reversible::convert($inputs[$val], $format);
+        }
+
+        foreach ($sizes as $val) {
+            $message = "Trying with {$inputs[$val]} using {$formatName}";
+            $this->assertEquals($inputs[$val], Reversible::revert($codes[$val], $format), $message);
+        }
+    }
+
+    /**
+     * @expectedException \ShortCode\Exception\UnexpectedCodeLength
      */
     public function testExceptionIfConvertingNegativeNumber()
     {

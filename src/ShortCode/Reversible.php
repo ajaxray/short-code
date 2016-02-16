@@ -30,7 +30,7 @@ class Reversible extends Code
      *
      * @return string
      */
-    public static function convert($input, $outputFormat = Code::FORMAT_ALNUM)
+    public static function convert($input, $outputFormat = Code::FORMAT_ALNUM, $minLength = null)
     {
         static::throwUnlessAcceptable($outputFormat, $input);
         return self::convertBase($input, self::FORMAT_NUMBER, $outputFormat);
@@ -44,7 +44,7 @@ class Reversible extends Code
      *
      * @return int
      */
-    public static function revert($input, $inputFormat = Code::FORMAT_ALNUM)
+    public static function revert($input, $inputFormat = Code::FORMAT_ALNUM, $minLength = null)
     {
         return self::convertBase($input, $inputFormat, Code::FORMAT_NUMBER);
     }
