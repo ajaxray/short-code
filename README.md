@@ -61,24 +61,24 @@ ShortCode\Reversible::revert('RLC7B', ShortCode\Code::FORMAT_ALNUM_CAPITAL);
 // Output: 46345223
 ```
 
-### Workaround for Reversible code with certain length
-Let's say, for creating reversible reference code, you are converting the IDs to small letter text.
-For id 68, it will become - 
-```php
-<?php
-ShortCode\Reversible::convert(68, ShortCode\Code::FORMAT_CHAR_SMALL);
-// Output : cw
-```
+### Reversible code with having a minimum length
 
-Now, if the 2 char text don't looks good as a code number and you want a little longer codes,  
-just add a fixed salt to increase the numbers. Also, remember to subtract the salt after reverting  
+You can create code with a minimum output length. 
+You have to mention the length for both, converting and reverting functions.
 
 ```php
 <?php
-$salt = 99999;
-ShortCode\Reversible::convert(68 + $salt, ShortCode\Code::FORMAT_CHAR_SMALL);
-// Output : hfrl
-ShortCode\Reversible::revert('hfrl', ShortCode\Code::FORMAT_CHAR_SMALL) - $salt;
-// Output : 68
+// Creating alphanumeric code with minimum 6 character and reverting
+ShortCode\Reversible::convert(9876, \ShortCode\Code::FORMAT_ALNUM, 6); 
+// Output: 1002zi
+ShortCode\Reversible::revert('1002zi', \ShortCode\Code::FORMAT_ALNUM, 6);
+// Output: 9876
+
+// Creating small letter only code with minimum 6 character and reverting
+ShortCode\Reversible::convert(9876, \ShortCode\Code::FORMAT_CHAR_SMALL, 6);
+// Output: baardm
+ShortCode\Reversible::revert('baardm', \ShortCode\Code::FORMAT_CHAR_SMALL, 6);
+// Output: 9876
 ```
-  
+
+Please note that, using this method, you can only ensure the minimum character length. This length may exceed for larger numbers.   
