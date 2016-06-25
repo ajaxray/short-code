@@ -10,6 +10,7 @@
 
 namespace ShortCode;
 
+use ShortCode\Exception\InputIsTooLarge;
 use ShortCode\Exception\UnexpectedCodeLength;
 
 /**
@@ -33,11 +34,11 @@ class Reversible extends Code
      */
     public static function convert($input, $outputFormat = Code::FORMAT_ALNUM, $minLength = null)
     {
-        static::throwUnlessAcceptable($outputFormat, $input);
-
         if(is_int($minLength)) {
             $input += self::getMinForlength($outputFormat, $minLength);
         }
+
+        static::throwUnlessAcceptable($outputFormat, $input);
 
         return self::convertBase($input, self::FORMAT_NUMBER, $outputFormat);
     }
@@ -64,6 +65,10 @@ class Reversible extends Code
 
     private static function throwUnlessAcceptable($type, $input)
     {
+        if(false != strpos("$input", 'E+')) {
+            throw new InputIsTooLarge("Input is too large to process.");
+        }
+
         if($input < 0) {
             throw new UnexpectedCodeLength("Negative numbers are not acceptable for conversion.");
         }

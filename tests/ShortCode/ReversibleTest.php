@@ -69,19 +69,35 @@ class ReversibleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGeneratedCodeWithMinLength($format, $formatName)
     {
-        $sizes  = ['xs', 's', 'm', 'l', 'xl', 'xxl'];
+        $sizes  = ['xs', 's', 'm', 'l', 'xl'];
+        $lengths = [4, 8];
         $codes  = [];
-        $inputs = array_combine($sizes, [6, 87, 389, 4387652, 912791662310, PHP_INT_MAX]);
-        // on amd64 linux, PHP_INT_MAX = 9223372036854775807 (2^63-1)
+        $inputs = array_combine($sizes, [6, 87, 389, 4387652, 912791662310]);
+        // Skipping PHP_INT_MAX as it will throw InputIsTooLarge Exception
 
         foreach ($sizes as $val) {
-            $codes[$val] = Reversible::convert($inputs[$val], $format);
+            foreach ($lengths as $length) {
+                $codes[$length][$val] = Reversible::convert($inputs[$val], $format, $length);
+                echo "$length character $formatName for {$inputs[$val]} : {$codes[$length][$val]}" . PHP_EOL;
+                $this->assertGreaterThanOrEqual($length, strlen($codes[$length][$val]));
+            }
         }
 
         foreach ($sizes as $val) {
-            $message = "Trying with {$inputs[$val]} using {$formatName}";
-            $this->assertEquals($inputs[$val], Reversible::revert($codes[$val], $format), $message);
+            foreach ($lengths as $length) {
+                $message     = "Trying with {$inputs[$val]} using {$formatName} with minimum {$length} char";
+                $revertedVal = Reversible::revert($codes[$length][$val], $format, $length);
+                $this->assertEquals($inputs[$val], $revertedVal, $message);
+            }
         }
+    }
+
+    /**
+     * @expectedException \ShortCode\Exception\InputIsTooLarge
+     */
+    public function testExceptionIfInputIsTooLargeToProcess()
+    {
+        Reversible::convert(PHP_INT_MAX, Code::FORMAT_ALNUM, 8);
     }
 
     /**

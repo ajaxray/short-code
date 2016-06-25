@@ -11,12 +11,12 @@
 namespace ShortCode\Exception;
 
 /**
- * UnexpectedCodeLength
+ * InputIsTooLarge
  *
- * Throws when code length is unusually long or short
+ * Throws when input value too large to process
  *
  * @author Anis Uddin Ahmad <anis.programmer@gmail.com>
  */
-class UnexpectedCodeLength extends \RangeException
+class InputIsTooLarge extends \RangeException
 {
 }
