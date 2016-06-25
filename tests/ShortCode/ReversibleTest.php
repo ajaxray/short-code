@@ -78,7 +78,7 @@ class ReversibleTest extends \PHPUnit_Framework_TestCase
         foreach ($sizes as $val) {
             foreach ($lengths as $length) {
                 $codes[$length][$val] = Reversible::convert($inputs[$val], $format, $length);
-                echo "$length character $formatName for {$inputs[$val]} : {$codes[$length][$val]}" . PHP_EOL;
+                // echo "$length character $formatName for {$inputs[$val]} : {$codes[$length][$val]}" . PHP_EOL;
                 $this->assertGreaterThanOrEqual($length, strlen($codes[$length][$val]));
             }
         }
