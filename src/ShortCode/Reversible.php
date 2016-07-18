@@ -65,7 +65,7 @@ class Reversible extends Code
 
     private static function throwUnlessAcceptable($type, $input)
     {
-        if(false != strpos("$input", 'E+')) {
+        if(false !== strpos("$input", 'E+')) {
             throw new InputIsTooLarge("Input is too large to process.");
         }
 
