@@ -82,3 +82,7 @@ ShortCode\Reversible::revert('baardm', \ShortCode\Code::FORMAT_CHAR_SMALL, 6);
 ```
 
 Please note that, using this method, you can only ensure the minimum character length. This length may exceed for larger numbers.   
+
+---
+
+> "This is the Book about which there is no doubt, a guidance for those conscious of Allah" - [Al-Quran](http://quran.com)
