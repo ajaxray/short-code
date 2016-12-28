@@ -14,7 +14,7 @@ use ShortCode\Exception\InputIsTooLarge;
 use ShortCode\Exception\UnexpectedCodeLength;
 
 /**
- * Random
+ * Reversible
  *
  * Generate reversible codes from numbers and revert them to original number
  *
