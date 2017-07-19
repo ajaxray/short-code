@@ -81,7 +81,11 @@ ShortCode\Reversible::revert('baardm', \ShortCode\Code::FORMAT_CHAR_SMALL, 6);
 // Output: 9876
 ```
 
-Please note that, using this method, you can only ensure the minimum character length. This length may exceed for larger numbers.   
+Please note that, using this method, you can only ensure the minimum character length. This length may exceed for larger numbers.
+
+### Dependency
+
+This library has dependency on BCMath PHP extension. Please check the [installation page](http://php.net/manual/en/bc.setup.php) in case you don't have it configured.
 
 ---
 
