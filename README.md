@@ -85,8 +85,15 @@ Please note that, using this method, you can only ensure the minimum character l
 
 ### Dependency
 
-This library has dependency on BCMath PHP extension. Please check the [installation page](http://php.net/manual/en/bc.setup.php) in case you don't have it configured.
+This library has dependency on BCMath PHP extension. Please check the [installation page](http://php.net/manual/en/bc.setup.php) in case you don't have it configured. 
+
+Also it can be installed on linux based os with something similar to -
+```
+// FOr php 5.x
+sudo apt-get install php-bcmath
+// For php 7
+sudo apt-get install php7.0-bcmath
+```
 
 ---
-
 > "This is the Book about which there is no doubt, a guidance for those conscious of Allah" - [Al-Quran](http://quran.com)
