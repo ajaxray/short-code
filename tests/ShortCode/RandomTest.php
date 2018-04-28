@@ -10,12 +10,14 @@
 
 namespace ShortCode;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * RandomTest
  *
  * @author Anis Uddin Ahmad <anis.programmer@gmail.com>
  */
-class RandomTest extends \PHPUnit_Framework_TestCase
+class RandomTest extends TestCase
 {
     use TestHelper;
 
