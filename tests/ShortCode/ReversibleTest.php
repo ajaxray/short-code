@@ -10,12 +10,14 @@
 
 namespace ShortCode;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * ReversibleTest
  *
  * @author Anis Uddin Ahmad <anis.programmer@gmail.com>
  */
-class ReversibleTest extends \PHPUnit_Framework_TestCase
+class ReversibleTest extends TestCase
 {
     use TestHelper;
 
