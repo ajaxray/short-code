@@ -11,6 +11,8 @@
 namespace ShortCode;
 
 use PHPUnit\Framework\TestCase;
+use ShortCode\Exception\UnexpectedCodeLength;
+use ShortCode\Exception\CodeFormatTypeMismatchException;
 
 /**
  * RandomTest
@@ -19,56 +21,73 @@ use PHPUnit\Framework\TestCase;
  */
 class RandomTest extends TestCase
 {
-    use TestHelper;
+	use TestHelper;
 
-    public function testRandomCodeGeneration()
-    {
-        $code = Random::get();
-        $matchWith = [];
+	/**
+	 * @throws CodeFormatTypeMismatchException
+	 */
+	public function testRandomCodeGeneration()
+	{
+		$code = Random::get();
+		$matchWith = [];
 
-        for($i = 0; $i < 10; $i++) {
-            $matchWith[$i] = Random::get(8, Code::FORMAT_NUMBER);
-        }
+		for($i = 0; $i < 10; $i++) {
+			$matchWith[$i] = Random::get(8, Code::FORMAT_NUMBER);
+		}
 
-        $this->assertNotContains($code, $matchWith);
-    }
+		$this->assertNotContains($code, $matchWith);
+	}
 
+	/**
+	 * @dataProvider formatProvider
+	 *
+	 * @param $format
+	 * @param $formatName
+	 *
+	 * @throws CodeFormatTypeMismatchException
+	 */
+	public function testCodeGeneratedWithCorrectFormat($format, $formatName)
+	{
+		$code = Random::get(6, $format);
+		$length = strlen($code);
+		$this->assertSame(1, preg_match("/[$format]{". $length. '}/', $code), 'Trying with '. $formatName);
+	}
 
-    /**
-     * @dataProvider formatProvider
-     *
-     * @param $format
-     * @param $formatName
-     */
-    public function testCodeGeneratedWithCorrectFormat($format, $formatName)
-    {
-        $code = Random::get(6, $format);
-        $length = strlen($code);
-        $this->assertSame(1, preg_match("/[$format]{". $length. '}/', $code), 'Trying with '. $formatName);
-    }
+	/**
+	 * @dataProvider formatProvider
+	 *
+	 * @param $format
+	 * @param $formatName
+	 *
+	 * @throws CodeFormatTypeMismatchException
+	 */
+	public function testCodeGeneratedWithCorrectLength($format, $formatName)
+	{
+		$code4 = Random::get(4, $format);
+		$code10 = Random::get(10, $format);
+		$code20 = Random::get(20, $format);
 
-    /**
-     * @dataProvider formatProvider
-     *
-     * @param $format
-     * @param $formatName
-     */
-    public function testCodeGeneratedWithCorrectLength($format, $formatName)
-    {
-        $code4 = Random::get(4, $format);
-        $code10 = Random::get(10, $format);
-        $code20 = Random::get(20, $format);
+		$this->assertSame(4, strlen($code4), "Trying 4 char code with $formatName");
+		$this->assertSame(10, strlen($code10), "Trying 10 char code with $formatName");
+		$this->assertSame(20, strlen($code20), "Trying 20 char code with $formatName");
+	}
 
-        $this->assertSame(4, strlen($code4), "Trying 4 char code with $formatName");
-        $this->assertSame(10, strlen($code10), "Trying 10 char code with $formatName");
-        $this->assertSame(20, strlen($code20), "Trying 20 char code with $formatName");
-    }
+	/**
+	 * @throws CodeFormatTypeMismatchException
+	 */
+	public function testExceptionIfAskedForMoreThen20Chars()
+	{
+		$this->expectException(UnexpectedCodeLength::class);
+		Random::get(25, Code::FORMAT_NUMBER);
+	}
 
-    /**
-     * @expectedException ShortCode\Exception\UnexpectedCodeLength
-     */
-    public function testExceptionIfAskedForMoreThen20Chars()
-    {
-        Random::get(25, Code::FORMAT_NUMBER);
-    }
+	/**
+	 * @throws CodeFormatTypeMismatchException
+	 */
+	public function testExceptionIfLengthMoreThan20CharsAndOutputFormatMismatch() {
+		$this->testExceptionIfAskedForMoreThen20Chars();
+
+		$this->expectException(CodeFormatTypeMismatchException::class);
+		Random::get(90, '!*');
+	}
 } 

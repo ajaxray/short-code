@@ -21,15 +21,15 @@ use ShortCode\Exception\UnexpectedCodeLength;
  */
 class Random extends Code
 {
-
-    /**
-     * Get a random code of fixed length.
-     *
-     * @param int $length  length of code, default 8
-     * @param string $outputFormat One of Code::FORMAT_* constants. Default Code::FORMAT_ALNUM
-     *
-     * @return string
-     */
+	/**
+	 * Get a random code of fixed length.
+	 *
+	 * @param int $length length of code, default 8
+	 * @param string $outputFormat One of Code::FORMAT_* constants. Default Code::FORMAT_ALNUM
+	 *
+	 * @return string
+	 * @throws Exception\CodeFormatTypeMismatchException
+	 */
     public static function get($length = 8, $outputFormat = Code::FORMAT_ALNUM)
     {
         static::throwUnlessAcceptable($outputFormat, $length);
@@ -47,7 +47,10 @@ class Random extends Code
         return $output;
     }
 
-    private static function throwUnlessAcceptable($type, $length)
+	/**
+	 * @throws Exception\CodeFormatTypeMismatchException
+	 */
+	private static function throwUnlessAcceptable($type, $length)
     {
         if($length > 20) {
             $typeName = self::getTypeName($type);

@@ -10,6 +10,8 @@
 
 namespace ShortCode;
 
+use ShortCode\Exception\CodeFormatTypeMismatchException;
+
 /**
  * Code
  *
@@ -72,11 +74,18 @@ abstract class Code
         return $retval;
     }
 
-    protected static function getTypeName($value)
-    {
-        $class = new \ReflectionClass(__CLASS__);
-        $constants = array_flip($class->getConstants());
+	/**
+	 * @throws CodeFormatTypeMismatchException
+	 */
+	protected static function getTypeName($value)
+	{
+		$class = new \ReflectionClass(__CLASS__);
+		$constants = array_flip($class->getConstants());
 
-        return $constants[$value];
-    }
+		if (!isset($constants[$value])) {
+			throw new CodeFormatTypeMismatchException("Please, provide a valid code type");
+		}
+
+		return $constants[$value];
+	}
 }
