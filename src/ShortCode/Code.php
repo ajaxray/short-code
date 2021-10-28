@@ -56,14 +56,17 @@ abstract class Code
             }
             return $retval;
         }
+
         if ($fromBaseInput != self::FORMAT_NUMBER) {
             $base10 = self::convertBase($numberInput, $fromBaseInput, self::FORMAT_NUMBER);
         } else {
             $base10 = $numberInput;
         }
+
         if ($base10 < strlen($toBaseInput)) {
             return $toBase[$base10];
         }
+
         while ($base10 != '0') {
             $retval = $toBase[bcmod($base10, $toLen)] . $retval;
             $base10 = bcdiv($base10, $toLen, 0);
