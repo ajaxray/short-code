@@ -28,25 +28,25 @@ class Random extends Code {
 	 *
 	 * @return string
 	 */
-	public static function get( $length = 8, $outputFormat = Code::FORMAT_ALNUM ) {
-		static::throwUnlessAcceptable( $outputFormat, $length );
+	public static function get($length = 8, $outputFormat = Code::FORMAT_ALNUM) {
+		static::throwUnlessAcceptable($outputFormat, $length);
 
-		$number = rand( 100, 900 ) . str_replace( '.', '', microtime( true ) );
-		$output = self::convertBase( $number, self::FORMAT_NUMBER, $outputFormat );
+		$number = rand(100, 900) . str_replace('.', '', microtime(true));
+		$output = self::convertBase($number, self::FORMAT_NUMBER, $outputFormat);
 
-		if ( strlen( $output ) < $length ) {
-			$output .= substr( str_shuffle( $outputFormat . $outputFormat ), 0, ( $length - strlen( $output ) ) );
+		if(strlen($output) < $length) {
+			$output .= substr(str_shuffle($outputFormat . $outputFormat), 0, ($length - strlen($output)));
 		} else {
-			$output = substr( $output, 0, $length );
+			$output = substr($output, 0, $length);
 		}
 
 		return $output;
 	}
 
-	private static function throwUnlessAcceptable( $type, $length ) {
-		if ( $length > 20 ) {
-			$typeName = self::getTypeName( $type );
-			throw new UnexpectedCodeLength( "Code length $length is not acceptable for $typeName" );
+	private static function throwUnlessAcceptable($type, $length) {
+		if($length > 20) {
+			$typeName = self::getTypeName($type);
+			throw new UnexpectedCodeLength("Code length $length is not acceptable for $typeName");
 		}
 	}
 
