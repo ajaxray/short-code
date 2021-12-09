@@ -22,7 +22,6 @@ use ShortCode\Exception\UnexpectedCodeLength;
  */
 class Reversible extends Code
 {
-
     /**
      * Get a code created from a number
      *
@@ -35,7 +34,7 @@ class Reversible extends Code
     public static function convert($input, $outputFormat = Code::FORMAT_ALNUM, $minLength = null)
     {
         if(is_int($minLength)) {
-            $input += self::getMinForlength($outputFormat, $minLength);
+            $input += self::getMinForLength($outputFormat, $minLength);
         }
 
         static::throwUnlessAcceptable($outputFormat, $input);
@@ -56,8 +55,8 @@ class Reversible extends Code
     {
         $number = self::convertBase($input, $inputFormat, Code::FORMAT_NUMBER);
 
-        if (is_int($minLength)) {
-            $number -= self::getMinForlength($inputFormat, $minLength);
+        if(is_int($minLength)) {
+            $number -= self::getMinForLength($inputFormat, $minLength);
         }
 
         return $number;
@@ -80,11 +79,11 @@ class Reversible extends Code
      *
      * @return int|string
      */
-    private static function getMinForlength($outputFormat, $minLength)
+    private static function getMinForLength($outputFormat, $minLength)
     {
-        $offset         = str_pad($outputFormat[1], $minLength, $outputFormat[0]);
-        $offsetAsNumber = \ShortCode\Code::convertBase($offset, $outputFormat, \ShortCode\Code::FORMAT_NUMBER);
-        return $offsetAsNumber;
+        $offset = str_pad($outputFormat[1], $minLength, $outputFormat[0]);
+
+        return \ShortCode\Code::convertBase($offset, $outputFormat, \ShortCode\Code::FORMAT_NUMBER);
     }
 
 }

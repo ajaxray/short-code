@@ -21,11 +21,10 @@ use ShortCode\Exception\UnexpectedCodeLength;
  */
 class Random extends Code
 {
-
     /**
      * Get a random code of fixed length.
      *
-     * @param int $length  length of code, default 8
+     * @param int $length length of code, default 8
      * @param string $outputFormat One of Code::FORMAT_* constants. Default Code::FORMAT_ALNUM
      *
      * @return string
@@ -38,9 +37,8 @@ class Random extends Code
         $output = self::convertBase($number, self::FORMAT_NUMBER, $outputFormat);
 
         if(strlen($output) < $length) {
-            $output .= substr(str_shuffle($outputFormat.$outputFormat), 0, ($length - strlen($output)));
-        }
-        if(strlen($output) > $length) {
+            $output .= substr(str_shuffle($outputFormat . $outputFormat), 0, ($length - strlen($output)));
+        } else {
             $output = substr($output, 0, $length);
         }
 
